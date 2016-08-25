@@ -17,6 +17,16 @@ import {
 
 import Header from './lib/header';
 import Input from './lib/input';
+import PrimaryButton from './lib/primaryButton';
+import Tabs from './lib/tabs';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  }
+});
 
 class reactNativeStyleguide extends Component {
   constructor(props) {
@@ -44,16 +54,27 @@ class reactNativeStyleguide extends Component {
           userName='Victor' 
           avatar='https://www.gravatar.com/avatar/1329d9e3f4bc1d233788c89c04410bfe.png?size=200' 
         />
-        <View style={{marginTop: 30, marginBottom: 30}}>
+        <Tabs />
+      <View>
           <Input 
-            placeholder="Email"
+            placeholder='Email'
+            validator={(val) => {
+              if(/^[\w._-]+[+]?[\w._-]+@[\w.-]+\.[a-zA-Z]{2,6}$/.test(val)) {
+                 return true;
+              }
+	            return false;
+	          }}
+            errorMsg='Please enter a valid email'
           />
           <Input 
-            placeholder="Password"
-            icon="lock"
+            placeholder='Password'
+            icon='lock'
             isPassword={true}
           />
+        
+        
         </View>
+        <PrimaryButton />
     </ScrollView>
     );
   }

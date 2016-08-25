@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  StatusBar,
   StyleSheet,
   Text,
   Image,
@@ -18,13 +19,25 @@ import Header from './lib/header';
 import Input from './lib/input';
 
 class reactNativeStyleguide extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  handleScroll(event) {
+    if (event.nativeEvent.contentOffset.y > 20) {
+      return StatusBar.setHidden(true, 'slide')
+    }
+    
+    return StatusBar.setHidden(false, 'slide')
+  }
+  
   render() {
     return (
-      <ScrollView>
-        <Header 
-          tenantName='Github' 
-          logo='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png' 
-        />
+      <ScrollView
+        onScroll={this.handleScroll}
+        scrollEventThrottle={200}
+      >
+        <StatusBar />
         <Header 
           tenantName='Github' 
           logo='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png' 

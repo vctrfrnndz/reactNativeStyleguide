@@ -71,8 +71,6 @@ class reactNativeStyleguide extends Component {
             icon='lock'
             isPassword={true}
           />
-        
-        
         </View>
         <PrimaryButton />
     </ScrollView>
